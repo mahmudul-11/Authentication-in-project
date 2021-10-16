@@ -1,9 +1,10 @@
 import React from 'react';
 import './Header.css'
 import { BrowserRouter, Switch, Route, Link, NavLink } from 'react-router-dom'
-import useFirebase from '../../hooks/useFirebase';
+
+import useAuth from '../../hooks/useAuth';
 const Header = () => {
-  const {user, logout} =useFirebase()
+  const {user, logout} =useAuth()
     return (
         <div className='header'>
             <NavLink to='/home'
@@ -22,7 +23,7 @@ const Header = () => {
                 color: "red"
               }}>Register</NavLink>
               <span> {user?.displayName} </span>
-            {user?.email && <button onClick={logout}>Log out</button>}
+            {user?.displayName && <button onClick={logout}>Log out</button>}
         </div>
     );
 };

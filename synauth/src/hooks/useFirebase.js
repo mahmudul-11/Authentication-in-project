@@ -1,5 +1,5 @@
 import { signInWithPopup, getAuth, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import initilizeAuthentication from "../Firebase/firebase.initialize";
 
 initilizeAuthentication()
@@ -27,9 +27,11 @@ const useFirebase = () => {
                 setUser(result.user);
             })
     }
+   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
         setUser(user)// ei user ta set kora hochhe.
     })
+   },[])
     const logout = () => {
         signOut(auth).then(() => {
             // Sign-out successful.

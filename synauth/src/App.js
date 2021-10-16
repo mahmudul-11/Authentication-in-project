@@ -5,28 +5,31 @@ import HomePage from './components/HomePage/HomePage';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Header from './components/Header/Header';
+import AuthProvider from './context/AuthProvider';
 
 function App() {
   return (
     <div className="App">
-      < BrowserRouter>
-      <Header></Header>
-        <Switch>
-          <Route exact path='/'>
-            <HomePage></HomePage>
-          </Route>
-          <Route exact path='/home'>
-            <HomePage></HomePage>
-          </Route>
-          <Route exact path='/login'>
-            <Login></Login>
-          </Route>
-          <Route exact path='/register'>
-            <Register></Register>
-          </Route>
+      <AuthProvider>
+        < BrowserRouter>
+          <Header></Header>
+          <Switch>
+            <Route exact path='/'>
+              <HomePage></HomePage>
+            </Route>
+            <Route exact path='/home'>
+              <HomePage></HomePage>
+            </Route>
+            <Route exact path='/login'>
+              <Login></Login>
+            </Route>
+            <Route exact path='/register'>
+              <Register></Register>
+            </Route>
 
-        </Switch>
-      </BrowserRouter>
+          </Switch>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
